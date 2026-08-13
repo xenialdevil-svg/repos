@@ -1,0 +1,36 @@
+name: Daily Job
+
+on:
+  schedule:
+    # Runs once every day at 00:00 UTC (06:00 Bangladesh time, UTC+6)
+    - cron: "0 0 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  daily-task:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Git
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Create 600 Random-Date Commits
+        run: node index.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
