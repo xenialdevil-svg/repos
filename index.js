@@ -6,7 +6,7 @@ const FilePath = "./data.json";
 const git = simpleGit();
 
 // Daily generation settings.
-const COMMITS_PER_RUN = 600;
+const COMMITS_PER_RUN = 6000;
 const MIN_COMMIT_DATE_UTC = moment.utc("2016-01-01T00:00:00Z");
 
 // Configure Git user (essential for GitHub Actions)
