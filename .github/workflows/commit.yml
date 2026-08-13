@@ -1,6 +1,8 @@
 name: Daily Job
 
 on:
+  workflow_dispatch:
+
   schedule:
     # Runs once every day at 00:00 UTC (06:00 Bangladesh time, UTC+6)
     - cron: "0 0 * * *"
